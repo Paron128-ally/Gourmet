@@ -1,4 +1,4 @@
-# Gourmet
+
 # Gourmet — Recipe Finder
 
 A Flask + vanilla JS web app for browsing recipes by cuisine, searching by ingredient or name, viewing full recipe details, and saving favorites.
