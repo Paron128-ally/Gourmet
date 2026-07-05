@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gourmet - Find Your Favorite Dish</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <button class="close-btn" onclick="toggleSidebar()">✕</button>
+    <div class="sidebar-header">Menu</div>
+    <div class="sidebar-item" onclick="showPage('home')">Home</div>
+    <div class="sidebar-item" onclick="showPage('recipes')">All Recipes</div>
+    <div class="sidebar-item" onclick="showPage('cuisine')">Cuisine</div>
+    <div class="sidebar-item" onclick="showPage('favorites')">Favorites</div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+    <!-- HEADER -->
+    <div class="header">
+      <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+      <div class="header-title">Gourmet</div>
+      <button class="header-icon" onclick="showPage('favorites')" style="position: relative;">
+        <img src="/icons/heart.png" alt="Favorites">
+        <span class="favorites-count" id="favorites-count">0</span>
+      </button>
+    </div>
+
+    <!-- HOME PAGE -->
+    <div id="home-content" class="page-content active">
+      <!-- HERO SECTION -->
+      <div class="hero-section">
+        <img src="/icons/ingredients.jpg" alt="Delicious Food" class="hero-image">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>Find Your Next Favorite Dish!</h1>
+          <p>Discover amazing recipes from around the world</p>
+          <div class="search-box">
+            <input type="text" id="search-input" placeholder="Search dishes, cuisines, ingredients...">
+            <button type="button" onclick="searchRecipes()"><img src="/icons/search.png" alt="Search"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-title">Featured Recipes</div>
+        <div class="recipe-grid" id="featured-recipes">
+          <!-- Recipes loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL RECIPES PAGE -->
+    <div id="recipes-content" class="page-content">
+      <div class="content-section">
+        <div class="section-title">All Recipes</div>
+        <div class="filter-tabs">
+          <button class="filter-tab active" onclick="filterRecipes(event, 'all')">All</button>
+          <button class="filter-tab" onclick="filterRecipes(event, 'Italian')">Italian</button>
+          <button class="filter-tab" onclick="filterRecipes(event, 'Thai')">Thai</button>
+          <button class="filter-tab" onclick="filterRecipes(event, 'Indian')">Indian</button>
+          <button class="filter-tab" onclick="filterRecipes(event, 'Japanese')">Japanese</button>
+        </div>
+        <div class="recipe-grid" id="all-recipes">
+          <!-- Recipes loaded here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- CUISINE PAGE -->
+    <div id="cuisine-content" class="page-content">
+      <div class="content-section">
+        <div class="section-title">Browse by Cuisine</div>
+        <div class="cuisine-grid">
+          <div class="cuisine-card" onclick="filterRecipes('Italian')">
+            <div class="cuisine-card-icon">🇮🇹</div>
+            <div class="cuisine-card-name">Italian</div>
+          </div>
+          <div class="cuisine-card" onclick="filterRecipes('Thai')">
+            <div class="cuisine-card-icon">🇹🇭</div>
+            <div class="cuisine-card-name">Thai</div>
+          </div>
+          <div class="cuisine-card" onclick="filterRecipes('Indian')">
+            <div class="cuisine-card-icon">🇮🇳</div>
+            <div class="cuisine-card-name">Indian</div>
+          </div>
+          <div class="cuisine-card" onclick="filterRecipes('Japanese')">
+            <div class="cuisine-card-icon">🇯🇵</div>
+            <div class="cuisine-card-name">Japanese</div>
+          </div>
+          <div class="cuisine-card" onclick="filterRecipes('Mexican')">
+            <div class="cuisine-card-icon">🇲🇽</div>
+            <div class="cuisine-card-name">Mexican</div>
+          </div>
+          <div class="cuisine-card" onclick="filterRecipes('Greek')">
+            <div class="cuisine-card-icon">🇬🇷</div>
+            <div class="cuisine-card-name">Greek</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAVORITES PAGE -->
+    <div id="favorites-content" class="page-content">
+      <div class="content-section">
+        <div class="section-title">Your Favorite Recipes</div>
+        <div class="recipe-grid" id="favorites-list">
+          <!-- Favorites loaded here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECIPE MODAL -->
+  <div class="modal" id="recipe-modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <img id="modal-image" src="" alt="" class="modal-image">
+      <div class="modal-body">
+        <h2 id="modal-title"></h2>
+        <div class="recipe-meta">
+          <span><img src="/icons/clock.png" alt="Time"> <span id="modal-time"></span></span>
+          <span><img src="/icons/people.png" alt="Servings"> <span id="modal-servings"></span></span>
+          <span><span id="modal-difficulty"></span></span>
+        </div>
+        <div class="recipe-rating">
+          <span id="modal-rating"><img src="/icons/star.png" alt="Rating"> 4.5/5</span>
+          <button class="btn-favorite" id="modal-favorite-btn" onclick="toggleFavoriteFromModal()"><img src="/icons/heart.png" alt="Favorites"> Add to Favorites</button>
+        </div>
+        <h3>Ingredients</h3>
+        <ul id="modal-ingredients"></ul>
+        <h3>Instructions</h3>
+        <ol id="modal-instructions"></ol>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
